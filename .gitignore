@@ -1,0 +1,53 @@
+﻿# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+
+# Node
+frontend/node_modules/
+frontend/dist/
+
+# IDE
+.idea/
+*.swp
+*.swo
+.vscode/
+
+# Data & Media
+uploads/
+outputs/
+logs/
+data/
+testimg/
+imgtest/
+runs/
+
+# Archives
+*.zip
+*.rar
+
+# Env files
+.env
+!.env.example.env
+
+# OS
+.DS_Store
+Thumbs.db
+*.log
+
+# Temp
+新建文件夹/
+tempfile_*
+screenshot.png
+stderr.log
+stdout.log
+
+# Charts (generated)
+论文图表/
+generate_charts.py
+view_database.py
+check_db_counts.py
+diagnose.py

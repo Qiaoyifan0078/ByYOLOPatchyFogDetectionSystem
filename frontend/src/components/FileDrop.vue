@@ -1,0 +1,7 @@
+<template>
+  <div class="filebox"><input :key="accept" ref="input" type="file" :accept="accept" @change="onChange"><button class="drop-zone" type="button" @click="$refs.input.click()"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg><span>{{ file?file.name:label }}</span><small v-if="!file" class="hint">点击选择或拖拽文件到此处</small></button></div>
+</template>
+<script>
+export default {name:"FileDrop",props:{accept:{type:String,default:"*/*"},label:{type:String,default:"选择文件"}},data(){return{file:null}},watch:{accept(){this.clear()}},methods:{clear(){this.file=null;if(this.$refs.input)this.$refs.input.value="";this.$emit("change",null)},onChange(event){this.file=event.target.files[0]||null;this.$emit("change",this.file)}}};
+</script>
+<style scoped>.filebox input{display:none}.drop-zone{width:100%;min-height:140px;border:2px dashed #cbd5e1;background:#f8fafc;border-radius:10px;padding:20px;color:#64748b;display:grid;place-items:center;gap:8px;text-align:center;transition:.2s}.drop-zone:hover{border-color:#0f766e;background:#f0fdf9;color:#0f766e}.hint{color:#94a3b8;font-size:11px}</style>

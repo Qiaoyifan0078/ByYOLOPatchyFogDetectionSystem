@@ -1,0 +1,30 @@
+<!-- pages/login/login.wxml - 登录页面 -->
+
+<view class="login-container">
+  <view class="logo-section">
+    <image class="logo" src="/images/logo.png" mode="aspectFit"></image>
+    <text class="title">团雾预警系统</text>
+    <text class="subtitle">YOLOv8 智能识别</text>
+  </view>
+
+  <view class="login-section">
+    <button 
+      class="wechat-login-btn" 
+      bindtap="handleWechatLogin"
+      disabled="{{loading}}"
+    >
+      <image class="wechat-icon" src="/images/wechat-icon.png" mode="aspectFit"></image>
+      <text>{{loading ? '登录中...' : '微信一键登录'}}</text>
+    </button>
+
+    <view class="tips">
+      <text class="tip-text">登录后可以使用以下功能：</text>
+      <view class="feature-list">
+        <text class="feature-item">✓ 图片团雾识别</text>
+        <text class="feature-item">✓ 视频团雾识别</text>
+        <text class="feature-item">✓ 发布预警信息</text>
+        <text class="feature-item">✓ 接收短信通知</text>
+      </view>
+    </view>
+  </view>
+</view>

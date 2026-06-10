@@ -1,0 +1,11 @@
+<template>
+  <div>
+    <div class="page-head"><div><h2 class="page-title">历史识别</h2><p class="page-subtitle">图片、视频、摄像头识别记录</p></div><select v-model="sourceType" class="select filter" @change="load"><option value="">全部类型</option><option value="image">图片</option><option value="video">视频</option><option value="camera">摄像头</option></select></div>
+    <div class="table-wrap"><table><thead><tr><th>类型</th><th>文件名</th><th>目标数</th><th>最高置信度</th><th>耗时</th><th>识别时间</th><th v-if="user.role==='admin'">用户</th><th>结果</th><th>操作</th></tr></thead>
+    <tbody><tr v-for="item in items" :key="item.id"><td><span class="tag">{{ typeName(item.source_type) }}</span></td><td>{{ item.original_name }}</td><td>{{ item.detect_count }}</td><td>{{ percent(item.confidence_max) }}</td><td>{{ item.duration_ms }}ms</td><td>{{ item.created_at }}</td><td v-if="user.role==='admin'">{{ item.full_name||item.username }}</td><td><a class="link" :href="item.output_url" target="_blank">查看</a></td><td><button class="button danger small" @click="remove(item.id)">删除</button></td></tr>
+    <tr v-if="!items.length"><td :colspan="user.role==='admin'?9:8" class="empty-cell">暂无识别记录</td></tr></tbody></table></div>
+    <p class="error-text">{{ error }}</p>
+  </div>
+</template>
+<script>export default {name:"HistoryPage",props:{user:{type:Object,required:true}},data(){return{sourceType:"",items:[],error:""}},created(){this.load()},methods:{async load(){this.error="";try{const s=this.sourceType?"?source_type="+this.sourceType:"";const d=await this.$api.get("/api/detections"+s);this.items=d.items||[]}catch(e){this.error=e.message}},async remove(id){this.error="";try{await this.$api.delete("/api/detections/"+id);this.items=this.items.filter(i=>i.id!==id)}catch(e){this.error=e.message}},typeName(t){return{image:"图片",video:"视频",camera:"摄像头"}[t]||t},percent(v){return Math.round((Number(v)||0)*100)+"%"}}};</script>
+<style scoped>.filter{width:160px}.link{color:#0f766e;font-weight:700}.empty-cell{text-align:center;color:#94a3b8;padding:40px}</style>

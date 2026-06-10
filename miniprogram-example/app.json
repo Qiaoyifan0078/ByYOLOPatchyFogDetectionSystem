@@ -1,0 +1,48 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/index/index",
+    "pages/detect/detect",
+    "pages/warnings/warnings"
+  ],
+  "window": {
+    "navigationBarTitleText": "团雾预警系统",
+    "navigationBarBackgroundColor": "#0f766e",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f5f5f5"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#0f766e",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home-active.png"
+      },
+      {
+        "pagePath": "pages/detect/detect",
+        "text": "识别",
+        "iconPath": "images/detect.png",
+        "selectedIconPath": "images/detect-active.png"
+      },
+      {
+        "pagePath": "pages/warnings/warnings",
+        "text": "预警",
+        "iconPath": "images/warning.png",
+        "selectedIconPath": "images/warning-active.png"
+      }
+    ]
+  },
+  "permission": {
+    "scope.camera": {
+      "desc": "用于拍摄照片进行团雾识别"
+    },
+    "scope.album": {
+      "desc": "用于选择相册图片进行团雾识别"
+    }
+  }
+}
